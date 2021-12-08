@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "date-fns": "^2.27.0",
+    "react-icons": "^4.3.1"
+  }
+}

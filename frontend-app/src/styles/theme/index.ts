@@ -6,6 +6,8 @@ export const theme = {
     secondary: colors.SECONDARY,
     tertiary: colors.TERTIARY,
     background: colors.BACKGROUND,
-    background2: colors.BACKGROUND2
+    background2: colors.BACKGROUND2,
+    red: colors.RED,
+    green: colors.GREEN
   }
 }
