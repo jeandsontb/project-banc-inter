@@ -7,6 +7,10 @@
 </p>
 
 <p align="center" style="display: flex; align-items: flex-start; justify-content: center;">
+  <img alt="INTER" title="#INTER" src="https://raw.githubusercontent.com/jeandsontb/project-banc-inter/main/frontend-app/screen/Inter.gif" width="400px">
+</p>
+
+<p align="center" style="display: flex; align-items: flex-start; justify-content: center;">
   <img alt="INTER" title="#INTER" src="https://raw.githubusercontent.com/jeandsontb/project-banc-inter/main/frontend-app/screen/interfront01.png" width="400px">
   <img alt="INTER" title="#INTER" src="https://raw.githubusercontent.com/jeandsontb/project-banc-inter/main/frontend-app/screen/interfront.png" width="400px">
 </p>
