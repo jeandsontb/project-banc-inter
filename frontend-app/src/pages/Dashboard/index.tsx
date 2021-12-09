@@ -114,6 +114,9 @@ const Dashboard = () => {
               />
               <Button onClick={handlePayPix} >Pagar Pix</Button>
             </InLineContainer>
+            {messagePayment && 
+              <p className="primary-color">{messagePayment}</p>
+            }
           </Card>
         </div>
 

@@ -1,9 +1,7 @@
-import { format } from 'date-fns';
 import { useEffect, useState } from 'react';
 import { FiDollarSign } from 'react-icons/fi';
 import dayjs from 'dayjs';
 
-import useAuth from '../../../hooks/useAuth';
 import { transactions } from '../../../services/resources/pix';
 import { 
   StatementContainer, 
