@@ -12,6 +12,16 @@ export interface SignupData {
   password: string;
 }
 
+export interface IUserDTO {
+  id: string;
+  firstName: string;
+  lastName: string;
+  accountNumber: number;
+  accountDigit: number;
+  wallet: number;
+  email: string;
+}
+
 const signIn = async (data: SigninData) => {
   const result = await api.post('/user/signin', data);
   return result;
@@ -23,7 +33,7 @@ const signUp = async (data: SignupData) => {
 }
 
 const me = async () => {
-  const result = await api.get('/user/me');
+  const result = await api.get<IUserDTO>('/user/me');
   return result;
 }
 

@@ -1,6 +1,10 @@
 import { format } from 'date-fns';
+import { useEffect, useState } from 'react';
 import { FiDollarSign } from 'react-icons/fi';
+import dayjs from 'dayjs';
 
+import useAuth from '../../../hooks/useAuth';
+import { transactions } from '../../../services/resources/pix';
 import { 
   StatementContainer, 
   StatementItemContainer, 
@@ -11,11 +15,11 @@ import {
 
 interface StatementItem {
   user: {
-    firstName: string,
+    firstname: string,
     lastName: string,
   },
   value: number,
-  type: 'pay' | 'received',
+  type: 'paid' | 'received',
   updateAt: Date,
 }
 
@@ -32,11 +36,14 @@ const StatementItemData = ({user, value, type, updateAt}: StatementItem) => {
         </p>
 
         <p>
-          {type === 'pay' ? 'Pago a ' : 'Recebido de '}
-          <strong>{user.firstName} {user.lastName} </strong>
+          {type === 'paid' ? 'Pago a ' : 'Recebido de '}
+          <strong>{user.firstname} {user.lastName} </strong>
         </p>
 
-        <p>{format(updateAt, "dd/MM/yyyy 'às' HH:mm:'h'")}</p>
+        {/* <p>{format(new Date(updateAt), "dd/MM/yyyy 'às' HH:mm:'h'")}</p> */}
+        <p>
+          {dayjs(updateAt).format("DD/MM/YYYY")} às {dayjs(updateAt).format("HH:mm/YYYY")}
+        </p>
       </StatementItemInfo>
     </StatementItemContainer>
   )
@@ -44,31 +51,42 @@ const StatementItemData = ({user, value, type, updateAt}: StatementItem) => {
 
 const Statement = () => {
 
-  const statements: StatementItem[] = [
-    {
-      user: {
-        firstName: 'Jeandson',
-        lastName: 'Tenorio'
-      },
-      value: 250.00,
-      type: 'pay',
-      updateAt: new Date()
-    },
-    {
-      user: {
-        firstName: 'Kaio',
-        lastName: 'Ryan'
-      },
-      value: 120.00,
-      type: 'received',
-      updateAt: new Date()
-    }
-  ]
+  const [statements, setStatements] = useState<StatementItem[]>([]);
+
+  const getAllTransactions = async () => {
+    const { data } = await transactions();
+    setStatements(data.transactions);
+  }
+
+  useEffect(() => {
+    getAllTransactions();
+  }, [])
+
+  // const statements: StatementItem[] = [
+  //   {
+  //     user: {
+  //       firstName: 'Jeandson',
+  //       lastName: 'Tenorio'
+  //     },
+  //     value: 250.00,
+  //     type: 'pay',
+  //     updateAt: new Date()
+  //   },
+  //   {
+  //     user: {
+  //       firstName: 'Kaio',
+  //       lastName: 'Ryan'
+  //     },
+  //     value: 120.00,
+  //     type: 'received',
+  //     updateAt: new Date()
+  //   }
+  // ]
 
   return (
     <StatementContainer>
-      {statements.map(statement => <StatementItemData {...statement} />)
-
+      {
+        statements.length > 0 && statements.map(statement => <StatementItemData {...statement} />)
       }
     </StatementContainer>
   )
