@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "axios": "^0.24.0",
     "date-fns": "^2.27.0",
     "react-icons": "^4.3.1"
   }
